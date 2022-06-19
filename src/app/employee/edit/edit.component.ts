@@ -72,11 +72,13 @@ export class EditComponent implements OnInit {
   }
 
   submitForm1() {
-    this.http.put(environment.apiUrl+'/employees/'+this.id, this.form1.value).subscribe((res: any) => {
+    if(this.form1.valid) {
+      this.http.put(environment.apiUrl+'/employees/'+this.id, this.form1.value).subscribe((res: any) => {
         this.router.navigate(['/employee/list']);
         localStorage.setItem('alert', 'Sukses Update');
         this.router.navigate(['employee/list']);
-    });
+      });
+    }
   }
 
   logout() {

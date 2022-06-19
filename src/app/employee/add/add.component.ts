@@ -57,10 +57,12 @@ export class AddComponent implements OnInit {
   }
 
   submitForm1() {
-    this.http.post(environment.apiUrl+'/employees', this.form1.value).subscribe((res: any) => {
-      localStorage.setItem('alert', 'Sukses Menyimpan');
-      this.router.navigate(['employee/list']);
-    });
+    if(this.form1.valid) {
+      this.http.post(environment.apiUrl+'/employees', this.form1.value).subscribe((res: any) => {
+        localStorage.setItem('alert', 'Sukses Menyimpan');
+        this.router.navigate(['employee/list']);
+      });
+    }
   }
 
   logout() {
