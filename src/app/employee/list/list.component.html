@@ -1,0 +1,67 @@
+<mat-toolbar class="app-toolbar" color="primary" *ngIf="login">
+    <span>Hai, {{ username }}</span>
+    <button mat-stroked-button (click)="logout()">Logout</button>
+</mat-toolbar>
+<div class="box">
+    <div  class="card-yellow" *ngIf="alertsuccess">
+        {{ alert }}
+    </div>
+    <div  class="card-red" *ngIf="alertdelete">
+        {{ alert }}
+    </div>
+    <h1>Employee List</h1>
+    <button mat-raised-button color="primary" class="add" (click)="add()">Add</button>
+    <form class="example-form">
+        <mat-form-field appearance="standard" style="margin-right:20px">
+            <mat-label>Filter 1</mat-label>
+            <input matInput (keyup)="filter1($event)" placeholder="Search columns">
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+            <mat-label>Filter 2</mat-label>
+            <input matInput (keyup)="filter2($event)" placeholder="Search columns" #input>
+        </mat-form-field>
+    </form>
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)">
+            <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef  mat-sort-header > ID </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+            <ng-container matColumnDef="username">
+            <th mat-header-cell *matHeaderCellDef  mat-sort-header > Username </th>
+            <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+            </ng-container>
+            <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef  mat-sort-header > Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+            <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef  mat-sort-header > Email </th>
+            <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+            </ng-container>
+            <ng-container matColumnDef="birthdate">
+            <th mat-header-cell *matHeaderCellDef  mat-sort-header > Birth Date </th>
+            <td mat-cell *matCellDef="let element"> {{element.birthDate | date:'d MMMM yyyy, h:mm a' }} </td>
+            </ng-container>
+            <ng-container matColumnDef="basicsalary">
+            <th mat-header-cell *matHeaderCellDef  mat-sort-header > Basic Salary </th>
+            <td mat-cell *matCellDef="let element"> {{ element.basicSalary }}</td>
+            </ng-container>
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef> Action </th>
+                <td mat-cell *matCellDef="let element">
+                    <button mat-flat-button color="primary" [routerLink]="['/employee/detail', element.id]">Detail</button>&nbsp;
+                  <button mat-flat-button color="accent" [routerLink]="['/employee/edit', element.id]">Edit</button>&nbsp;
+                  <button mat-flat-button color="warn" (click)="delete(element.id, element.username)">Delete</button>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                        showFirstLastButtons 
+                        aria-label="Select page of periodic elements">
+        </mat-paginator>
+    </div>
+</div>

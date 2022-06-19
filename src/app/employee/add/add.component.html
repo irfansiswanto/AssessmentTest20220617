@@ -1,0 +1,86 @@
+<mat-toolbar class="app-toolbar" color="primary" *ngIf="login">
+    <span>Hai, {{ username }}</span>
+    <button mat-stroked-button (click)="logout()">Logout</button>
+</mat-toolbar>
+<div class="box">
+    <mat-card>
+        <mat-card-content>
+            <form [formGroup]="form1" (ngSubmit)="submitForm1()" class="example-form">
+                    <h1>Employee Add</h1>
+                <mat-form-field class="example-full-width"  appearance="fill">
+                    <mat-label>Username</mat-label>
+                    <input matInput type="text" value="" formControlName="username">
+                    <mat-hint *ngIf="form1.get('username')?.invalid">
+                        Username is required.
+                    </mat-hint>
+                </mat-form-field>
+                <mat-form-field class="example-50-width" appearance="fill" style="margin-right: 6%;">
+                    <mat-label>First Name</mat-label>
+                    <input matInput type="text" value="" formControlName="firstName">
+                    <mat-hint *ngIf="form1.controls['firstName'].invalid">
+                        First Name is required.
+                    </mat-hint>
+                </mat-form-field>
+                <mat-form-field class="example-50-width" appearance="fill">
+                    <mat-label>Last Name</mat-label>
+                    <input matInput type="text" value="" formControlName="lastName">
+                    <mat-hint *ngIf="form1.get('lastName')?.invalid">
+                        Last Name is required.
+                    </mat-hint>
+                </mat-form-field>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Email</mat-label>
+                    <input matInput type="email" value="" formControlName="email">
+                    <mat-hint *ngIf="form1.get('email')?.invalid">
+                        Email is required.
+                    </mat-hint>
+                </mat-form-field>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Birth Date</mat-label>
+                    <input matInput type="datetime-local" value="" formControlName="birthDate">
+                    <mat-hint *ngIf="form1.get('birthDate')?.invalid">
+                        Dirth Date is required.
+                    </mat-hint>
+                </mat-form-field>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Basic Salary</mat-label>
+                    <input matInput type="number" value="" formControlName="basicSalary">
+                    <mat-hint *ngIf="form1.get('username')?.invalid">
+                        Basic Salary is required.
+                    </mat-hint>
+                </mat-form-field>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Group</mat-label>
+                    <mat-select formControlName="group">
+                        <mat-option *ngFor="let group of groups" [value]="group.value">
+                            {{group.name}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-hint *ngIf="form1.get('group')?.invalid">
+                        Group is required.
+                    </mat-hint>
+                </mat-form-field>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Description</mat-label>
+                    <textarea matInput formControlName="description"></textarea>
+                    <mat-hint *ngIf="form1.get('username')?.invalid">
+                        Description is required.
+                    </mat-hint>
+                </mat-form-field>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Status</mat-label>
+                    <mat-select formControlName="status">
+                        <mat-option *ngFor="let sts of status" [value]="sts.value">
+                            {{sts.name}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-hint *ngIf="form1.get('status')?.invalid">
+                        Status is required.
+                    </mat-hint>
+                </mat-form-field>
+                <button mat-raised-button color="primary">Save</button>&nbsp; 
+                <button mat-raised-button color="warn" [routerLink]="['/employee/list']">Cancel</button>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

@@ -1,0 +1,52 @@
+table {
+    width: 100%;
+  }
+
+.box {
+  padding: 50px 100px 50px 100px;
+  overflow-x: auto;
+}
+
+.add {
+  margin-bottom: 20px;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+span {
+  width: 100%;
+}
+
+.card-yellow {
+  background-color: yellow;
+  color: black;
+  padding: 20px 20px 20px 20px;
+  margin-bottom: 20px;
+}
+
+.card-red {
+  background-color: red;
+  color: white;
+  padding: 20px 20px 20px 20px;
+  margin-bottom: 20px
+}
+
+.app-toolbar {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+@media only screen and (max-width: 768px) {
+  .box {
+      padding: 5px 10px 5px 10px;
+  }
+
+  .mat-elevation-z8 {
+    overflow-x: auto;
+  }
+}
+

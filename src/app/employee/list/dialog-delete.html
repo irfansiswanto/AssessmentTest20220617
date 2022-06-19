@@ -1,0 +1,8 @@
+<h1>Warning!</h1>
+<p>ID: {{ data.id }}</p>
+<p>username: {{ data.username }}</p>
+<p>Are you sure delete this data ?</p>
+<div mat-dialog-actions>
+    <button mat-button (click)="yes(data.id)">Yes</button>&nbsp;
+    <button mat-button (click)="no()">No</button>
+</div>
